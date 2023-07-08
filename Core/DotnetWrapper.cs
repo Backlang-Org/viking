@@ -44,4 +44,20 @@ public static class DotnetWrapper
     {
         Invoke("test");
     }
+
+    public static void NewTemplate(string path)
+    {
+        File.WriteAllText( Path.Combine(path, "src", "Program.back"), @"func main() {
+    print(""hello world"");
+}");
+        File.WriteAllText(Path.Combine(path, path + ".backproj"), @"<Project Sdk=""Backlang.NET.Sdk/1.0.84"">
+                    <PropertyGroup>
+                <OutputType>Exe</OutputType>
+            <Description>TestConsole</Description>
+            <TargetFramework>net7</TargetFramework>
+            <AssemblyName>TestConsole</AssemblyName>
+            <IncludeBuildOutput>true</IncludeBuildOutput>
+            </PropertyGroup>
+            </Project>");
+    }
 }

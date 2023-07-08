@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using GitSharp;
 using Spectre.Console.Cli;
+using viking.Core;
 using Index = GitSharp.Index;
 
 namespace viking.Commands;
@@ -23,6 +24,8 @@ internal sealed class NewCommand : Command<NewCommand.Settings>
         new Index(repository).AddAll();
         
         repository.Commit("Initial Commit");
+        
+        DotnetWrapper.NewTemplate(settings.Name);
 
         return 0;
     }
