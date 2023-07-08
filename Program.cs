@@ -2,6 +2,8 @@
 using Spectre.Console.Cli;
 using viking.Commands;
 
+namespace viking;
+
 public static class Program
 {
     public static int Main(string[] args)
@@ -28,7 +30,7 @@ public static class Program
         _.AddCommand<AddCommand>("add");
         _.AddCommand<BuildCommand>("build");
         _.AddCommand<CleanCommand>("clean");
-        _.AddCommand<NewCommand>("new");
+        _.AddCommand<NewCommand>("new").WithExample("new", "\"hello world\"");
         _.AddCommand<RunCommand>("run");
         _.AddCommand<TestCommand>("test");
         _.AddCommand<UpdateCommand>("update");

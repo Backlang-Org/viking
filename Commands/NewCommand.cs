@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using GitSharp;
-using Spectre.Console;
 using Spectre.Console.Cli;
 using Index = GitSharp.Index;
 

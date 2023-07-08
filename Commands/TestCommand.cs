@@ -1,29 +1,17 @@
 ﻿using System.ComponentModel;
 using Spectre.Console;
 using Spectre.Console.Cli;
+using viking.Core;
 
 namespace viking.Commands;
 
-internal sealed class TestCommand : Command<TestCommand.Settings>
+[Description("Run all tests")]
+internal sealed class TestCommand : Command
 {
-    public sealed class Settings : CommandSettings
+    public override int Execute(CommandContext context)
     {
-        [Description("Path to search. Defaults to current directory.")]
-        [CommandArgument(0, "[searchPath]")]
-        public string? SearchPath { get; init; }
-
-        [CommandOption("-p|--pattern")]
-        public string? SearchPattern { get; init; }
-
-        [CommandOption("--hidden")]
-        [DefaultValue(true)]
-        public bool IncludeHidden { get; init; }
-    }
-
-    public override int Execute(CommandContext context, Settings settings)
-    {
-        AnsiConsole.MarkupLine($"[red]Not implemented[/]");
-
+        DotnetWrapper.Test();
+        
         return 0;
     }
 }
