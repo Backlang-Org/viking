@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Spectre.Console;
+﻿using Spectre.Console;
 using Spectre.Console.Cli;
 using viking.Commands;
 

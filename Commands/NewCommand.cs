@@ -1,28 +1,29 @@
 ﻿using System.ComponentModel;
+using GitSharp;
 using Spectre.Console;
 using Spectre.Console.Cli;
+using Index = GitSharp.Index;
 
 namespace viking.Commands;
 
+[Description("Create new backlang project")]
 internal sealed class NewCommand : Command<NewCommand.Settings>
 {
-    public sealed class Settings : CommandSettings
+    internal class Settings : CommandSettings
     {
-        [Description("Path to search. Defaults to current directory.")]
-        [CommandArgument(0, "[searchPath]")]
-        public string? SearchPath { get; init; }
-
-        [CommandOption("-p|--pattern")]
-        public string? SearchPattern { get; init; }
-
-        [CommandOption("--hidden")]
-        [DefaultValue(true)]
-        public bool IncludeHidden { get; init; }
+        [CommandArgument(0, "<name>")]
+        public string Name { get; set; }
     }
-
+    
     public override int Execute(CommandContext context, Settings settings)
     {
-        AnsiConsole.MarkupLine($"[red]Not implemented[/]");
+        Directory.CreateDirectory(settings.Name);
+        Directory.CreateDirectory(Path.Combine(settings.Name, "src"));
+
+        var repository = Repository.Init(settings.Name);
+        new Index(repository).AddAll();
+        
+        repository.Commit("Initial Commit");
 
         return 0;
     }
